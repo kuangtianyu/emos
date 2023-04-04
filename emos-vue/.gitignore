@@ -3,3 +3,12 @@ node_modules
 dist
 dist-ssr
 *.local
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+package-lock.json
+package.json
