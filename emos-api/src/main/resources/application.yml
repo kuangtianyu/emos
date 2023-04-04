@@ -89,8 +89,8 @@ tencent:
     region: 存储桶地域名称
     bucket: 存储桶名字
   trtc:
-    appId: TRTC的APPID
-    secretKey: TRTC的密钥
+    appId: 1400802422
+    secretKey: bcb2d169471430f8c84633d3df5e81aec1a08159f90ade7faf15ac51419c19eb
     expire: 86400
 wx:
   app-id: 微信小程序APPID
@@ -98,9 +98,3 @@ wx:
   mch-id: 微信支付商户号
   key: 微信支付密钥
   cert-path: 微信支付数字证书文件路径
-emos:
-  code: 慕课网授权码
-  tcode: "课程授权码"
-  recieveNotify: http://你电脑的IP地址:8090/emos-api/meeting/recieveNotify
-workflow:
-  url: http://你电脑的IP地址:9090/emos-workflow
