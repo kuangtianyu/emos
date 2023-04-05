@@ -41,12 +41,6 @@ public class ApprovalController {
     @Value("${workflow.url}")
     private String workflow;
 
-    @Value("${emos.code}")
-    private String code;
-
-    @Value("${emos.tcode}")
-    private String tcode;
-
     @Autowired
     private UserService userService;
 
@@ -85,8 +79,6 @@ public class ApprovalController {
             throw new EmosException("instanceId不能为空");
         }
         HashMap param = new HashMap() {{
-            put("code", code);
-            put("tcode", tcode);
             put("instanceId", instanceId);
         }};
         String url = workflow + "/workflow/searchApprovalBpmn";

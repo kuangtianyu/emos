@@ -9,7 +9,6 @@ import com.example.emos.api.db.dao.TbAmectDao;
 import com.example.emos.api.db.pojo.TbAmect;
 import com.example.emos.api.exception.EmosException;
 import com.example.emos.api.service.AmectService;
-import com.example.emos.api.wxpay.MyWXPayConfig;
 import com.example.emos.api.wxpay.WXPay;
 import com.example.emos.api.wxpay.WXPayUtil;
 import lombok.extern.slf4j.Slf4j;

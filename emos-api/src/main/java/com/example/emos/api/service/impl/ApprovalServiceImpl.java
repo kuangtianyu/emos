@@ -20,16 +20,8 @@ public class ApprovalServiceImpl implements ApprovalService {
     @Value("${workflow.url}")
     private String workflow;
 
-    @Value("${emos.code}")
-    private String code;
-
-    @Value("${emos.tcode}")
-    private String tcode;
-
     @Override
     public PageUtils searchTaskByPage(HashMap param) {
-        param.put("code",code);
-        param.put("tcode",tcode);
         String url = workflow + "/workflow/searchTaskByPage";
         HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(JSONUtil.toJsonStr(param)).execute();
@@ -50,8 +42,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public HashMap searchApprovalContent(HashMap param) {
-        param.put("code",code);
-        param.put("tcode",tcode);
         String url=workflow+"/workflow/searchApprovalContent";
         HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(JSONUtil.toJsonStr(param)).execute();
@@ -67,8 +57,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public void approvalTask(HashMap param) {
-        param.put("code",code);
-        param.put("tcode",tcode);
         String url = workflow + "/workflow/approvalTask";
         HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(JSONUtil.toJsonStr(param)).execute();
@@ -80,8 +68,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public void archiveTask(HashMap param) {
-        param.put("code",code);
-        param.put("tcode",tcode);
         String url = workflow + "/workflow/archiveTask";
         HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(JSONUtil.toJsonStr(param)).execute();

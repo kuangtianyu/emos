@@ -28,12 +28,6 @@ public class MeetingWorkflowTask {
     @Value("${emos.recieveNotify}")
     private String recieveNotify;
 
-    @Value("${emos.code}")
-    private String code;
-
-    @Value("${emos.tcode}")
-    private String tcode;
-
     @Value("${workflow.url}")
     private String workflow;
 
@@ -45,8 +39,6 @@ public class MeetingWorkflowTask {
         json.set("uuid", uuid);
         json.set("creatorId",creatorId);
         json.set("creatorName",info.get("name").toString());
-        json.set("code", code);
-        json.set("tcode", tcode);
         json.set("title",title);
         json.set("date", date);
         json.set("start", start);
@@ -84,8 +76,6 @@ public class MeetingWorkflowTask {
         JSONObject json=new JSONObject();
         json.set("uuid", uuid);
         json.set("instanceId", instanceId);
-        json.set("code", code);
-        json.set("tcode", tcode);
         json.set("type", "会议申请");
         json.set("reason", reason);
 

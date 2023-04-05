@@ -23,14 +23,9 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Value("${wx.app-id}")
-    private String appId;
 
-    @Value("${wx.app-secret}")
-    private String appSecret;
-
-//    @Value("${workflow.url}")
-//    private String workflow;
+    @Value("${workflow.url}")
+    private String workflow;
 
     @Value("${emos.code}")
     private String code;
@@ -152,8 +147,6 @@ public class UserServiceImpl implements UserService {
     private String getOpenId(String code) {
         String url = "https://api.weixin.qq.com/sns/jscode2session";
         HashMap map = new HashMap();
-        map.put("appid", appId);
-        map.put("secret", appSecret);
         map.put("js_code", code);
         map.put("grant_type", "authorization_code");
         String response = HttpUtil.post(url, map);

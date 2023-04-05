@@ -18,11 +18,6 @@ import java.util.HashMap;
 @Component
 @Slf4j
 public class LeaveWorkflowTask {
-    @Value("${emos.code}")
-    private String code;
-
-    @Value("${emos.tcode}")
-    private String tcode;
 
     @Value("${workflow.url}")
     private String workflow;
@@ -43,8 +38,6 @@ public class LeaveWorkflowTask {
         json.set("url",recieveNotify);
         json.set("creatorId", creatorId);
         json.set("creatorName", info.get("name").toString());
-        json.set("code", code);
-        json.set("tcode", tcode);
         json.set("title",info.get("dept").toString()+info.get("name").toString()+"的请假");
         Integer managerId=userDao.searchDeptManagerId(creatorId);
         json.set("managerId",managerId);
@@ -75,8 +68,6 @@ public class LeaveWorkflowTask {
         json.set("instanceId", instanceId);
         json.set("type", type);
         json.set("reason", reason);
-        json.set("code", code);
-        json.set("tcode", tcode);
         String url = workflow + "/workflow/deleteProcessById";
         HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
