@@ -18,10 +18,10 @@ import router from './router'
 app.use(router) //挂载路由插件
 
 //使用WebSocket，后端项目给前端页面推送通知更
-/*import VueNativeSock from "vue-native-websocket-vue3";
+import VueNativeSock from "vue-native-websocket-vue3";
 app.use(VueNativeSock, "ws://你电脑的IP地址:8090/emos-api/socket", {
     "format": "json"
-});*/
+});
 
 //导入Cookie库，可以读写Cookie数据
 import VueCookies from 'vue3-cookies'
@@ -87,7 +87,7 @@ app.config.globalProperties.$echarts = echarts //设置全局变量$echarts
 
 
 //后端项目的URL根路径
-let baseUrl = "http://192.168.16.1:8090/emos-api/"
+let baseUrl = "http://你电脑的IP地址:8090/emos-api/"
 
 app.config.globalProperties.$baseUrl = baseUrl //设置全局变量$baseUrl
 

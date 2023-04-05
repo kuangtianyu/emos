@@ -13,7 +13,6 @@ public class R extends HashMap<String, Object> {
         put("msg", "success");
     }
 
-    @Override
     public R put(String key, Object value) {
         super.put(key, value);
         return this;

@@ -105,7 +105,7 @@
 </template>
 
 <script>
-// import SvgIcon from '../components/SvgIcon.vue';
+import SvgIcon from '../components/SvgIcon.vue';
 import dayjs from 'dayjs';
 import Add from './offline_meeting-add.vue';
 import Info from './offline_meeting-info.vue';

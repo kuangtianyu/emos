@@ -190,7 +190,7 @@
 </template>
 
 <script>
-// import SvgIcon from '../components/SvgIcon.vue';
+import SvgIcon from '../components/SvgIcon.vue';
 import { isURL } from '../utils/validate';
 import UpdatePassword from './update-password.vue';
 import { ref, provide } from 'vue';

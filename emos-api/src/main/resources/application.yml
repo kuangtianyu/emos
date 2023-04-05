@@ -29,7 +29,7 @@ spring:
     database: 0
     host: localhost
     port: 6379
-    password: abc123456
+    password: root
     jedis:
       pool:
         max-active: 1000
@@ -43,7 +43,7 @@ spring:
       database: emos
       authentication-database: admin
       username: admin
-      password: abc123456
+      password: root
   sa-token:
     # token名称 (同时也是cookie名称)
     token-name: token
@@ -83,11 +83,11 @@ springdoc:
     disable-swagger-default-url: on
 tencent:
   cloud:
-    appId: 腾讯云APPID
-    secretId: 腾讯云SecretId
-    secretKey: 腾讯云SecretKey
-    region: 存储桶地域名称
-    bucket: 存储桶名字
+    appId: 1313021100
+    secretId: AKIDd5KK5aqrd9QRDk24qNefRxEJ9j49nCMG
+    secretKey: iANK2UhfNp2zhBQQAfxzmJacOvCE0Wnq
+    region: ap-nanjing
+    bucket: emos-1313021100
   trtc:
     appId: 1400802422
     secretKey: bcb2d169471430f8c84633d3df5e81aec1a08159f90ade7faf15ac51419c19eb
@@ -98,3 +98,9 @@ wx:
   mch-id: 微信支付商户号
   key: 微信支付密钥
   cert-path: 微信支付数字证书文件路径
+emos:
+  code: 慕课网授权码
+  tcode: "课程授权码"
+  recieveNotify: http://你电脑的IP地址:8090/emos-api/meeting/recieveNotify
+workflow:
+  url: http://192.168.16.1:9090/emos-workflow
