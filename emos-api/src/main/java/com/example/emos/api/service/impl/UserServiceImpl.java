@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService {
     @Value("${workflow.url}")
     private String workflow;
 
-    @Value("${emos.code}")
-    private String code;
-
     @Autowired
     private RedisTemplate redisTemplate;
 

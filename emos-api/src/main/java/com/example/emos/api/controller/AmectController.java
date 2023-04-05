@@ -12,7 +12,6 @@ import com.example.emos.api.controller.form.*;
 import com.example.emos.api.db.pojo.TbAmect;
 import com.example.emos.api.service.AmectService;
 import com.example.emos.api.websocket.WebSocketService;
-import com.example.emos.api.wxpay.WXPayUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -42,9 +41,6 @@ import java.util.Map;
 public class AmectController {
     @Autowired
     private AmectService amectService;
-
-    @Value("${wx.key}")
-    private String key;
 
     @PostMapping("/searchAmectByPage")
     @Operation(summary = "查询罚款分页记录")
@@ -139,41 +135,6 @@ public class AmectController {
         buffer.close();
         reader.close();
         String xml=temp.toString();
-        if(WXPayUtil.isSignatureValid(xml,key)){
-            Map<String,String> map=WXPayUtil.xmlToMap(xml);
-            String resultCode = map.get("result_code");
-            String returnCode = map.get("return_code");
-            if("SUCCESS".equals(resultCode)&&"SUCCESS".equals(returnCode)){
-                String outTradeNo = map.get("out_trade_no");
-                HashMap param=new HashMap(){{
-                   put("status",2);
-                   put("uuid",outTradeNo);
-                }};
-                int rows=amectService.updateStatus(param);
-                if(rows==1){
-                    //向前端页面推送付款结果
-                    int userId=amectService.searchUserIdByUUID(outTradeNo);
-                    WebSocketService.sendInfo("收款成功",userId+"");
-                    response.setCharacterEncoding("UTF-8");
-                    response.setContentType("application/xml");
-                    Writer writer=response.getWriter();
-                    BufferedWriter bufferedWriter=new BufferedWriter(writer);
-                    bufferedWriter.write("<xml><return_code><![CDATA[SUCCESS]]></return_code> <return_msg><![CDATA[OK]]></return_msg></xml>");
-                    bufferedWriter.close();
-                    writer.close();
-
-                }
-                else{
-                    log.error("更新订单状态失败");
-                    response.sendError(500, "更新订单状态失败");
-                }
-            }
-
-        }
-        else {
-            log.error("数字签名异常");
-            response.sendError(500, "数字签名异常");
-        }
     }
 
     @PostMapping("/searchNativeAmectPayResult")

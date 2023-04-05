@@ -9,13 +9,12 @@ import com.example.emos.api.db.dao.TbAmectDao;
 import com.example.emos.api.db.pojo.TbAmect;
 import com.example.emos.api.exception.EmosException;
 import com.example.emos.api.service.AmectService;
-import com.example.emos.api.wxpay.WXPay;
-import com.example.emos.api.wxpay.WXPayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,11 +24,8 @@ import java.util.Map;
 @Service
 @Slf4j
 public class AmectServiceImpl implements AmectService {
-    @Autowired
+    @Resource
     private TbAmectDao amectDao;
-
-    @Autowired
-    private MyWXPayConfig myWXPayConfig;
 
     @Override
     public PageUtils searchAmectByPage(HashMap param) {
@@ -76,18 +72,16 @@ public class AmectServiceImpl implements AmectService {
         if(map!=null&&map.size()>0){
             String amount=new BigDecimal(MapUtil.getStr(map,"amount")).multiply(new BigDecimal("100")).intValue()+"";
             try{
-                WXPay wxPay=new WXPay(myWXPayConfig);
+
                 param.clear();
-                param.put("nonce_str", WXPayUtil.generateNonceStr()); //随机字符串
+                param.put("nonce_str", "随便写的"); //随机字符串
                 param.put("body", "缴纳罚款");
                 param.put("out_trade_no", MapUtil.getStr(map, "uuid"));
                 param.put("total_fee", amount);
                 param.put("spbill_create_ip", "127.0.0.1");
                 param.put("notify_url", "http://s1.nsloop.com:35750/emos-api/amect/recieveMessage");
                 param.put("trade_type", "NATIVE");
-                String sign = WXPayUtil.generateSignature(param, myWXPayConfig.getKey());
-                param.put("sign", sign);
-                Map<String,String> result=wxPay.unifiedOrder(param);
+                Map<String,String> result= new HashMap<>();
                 String prepayId = result.get("prepay_id");
                 String codeUrl = result.get("code_url");
                 if(prepayId!=null){
@@ -103,7 +97,7 @@ public class AmectServiceImpl implements AmectService {
                     qrConfig.setHeight(255);
                     qrConfig.setMargin(2);
                     String qrCodeBase64 = QrCodeUtil.generateAsBase64(codeUrl, qrConfig, "jpg");
-                    return qrCodeBase64;
+                    return "qrCodeBase64";
                 }
                 else{
                     log.error("创建支付订单失败", result);
@@ -137,15 +131,13 @@ public class AmectServiceImpl implements AmectService {
         if(MapUtil.isNotEmpty(map)){
             String uuid=MapUtil.getStr(map,"uuid");
             param.clear();
-            param.put("appid", myWXPayConfig.getAppID());
-            param.put("mch_id", myWXPayConfig.getMchID());
+            param.put("appid", "nothing");
+            param.put("mch_id", "nothing");
             param.put("out_trade_no", uuid);
-            param.put("nonce_str", WXPayUtil.generateNonceStr());
+            param.put("nonce_str", "nothing");
             try{
-                String sign=WXPayUtil.generateSignature(param,myWXPayConfig.getKey());
-                param.put("sign",sign);
-                WXPay wxPay=new WXPay(myWXPayConfig);
-                Map<String,String> result=wxPay.orderQuery(param);
+                param.put("sign","nothing");
+                Map<String,String> result=new HashMap<>();
                 String returnCode = result.get("return_code");
                 String resultCode = result.get("result_code");
                 if ("SUCCESS".equals(returnCode) && "SUCCESS".equals(resultCode)) {
