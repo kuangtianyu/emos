@@ -24,11 +24,4 @@ public class SearchApprovalContentForm {
     @NotBlank(message = "status不能为空")
     @Pattern(regexp = "^待审批$|^已审批$|^已结束$", message = "status内容不正确")
     private String status;
-
-    @NotBlank(message = "code不能为空")
-    private String code;
-
-    @NotBlank(message = "tcode不能为空")
-    @Pattern(regexp = "^[0-9]{6}$",message = "tcode必须是6位数字")
-    private String tcode;
 }

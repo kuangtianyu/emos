@@ -25,12 +25,5 @@ public class SearchUserTaskListByPageForm {
     @NotNull(message = "length不能为空")
     @Range(min = 1, max = 60, message = "length必须在1~60之间")
     private Integer length;
-
-    @NotBlank(message = "code不能为空")
-    private String code;
-
-    @NotBlank(message = "tcode不能为空")
-    @Pattern(regexp = "^[0-9]{6}$",message = "tcode必须是6位数字")
-    private String tcode;
 }
 

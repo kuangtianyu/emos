@@ -17,11 +17,4 @@ public class TuneTaskForm {
     @NotNull(message = "assigneeId不能为空")
     @Min(value = 1, message = "assigneeId不能小于1")
     private Integer assigneeId;
-
-    @NotBlank(message = "tcode不能为空")
-    @Pattern(regexp = "^[0-9]{6}$",message = "tcode必须是6位数字")
-    private String tcode;
-
-    @NotBlank(message = "code不能为空")
-    private String code;
 }
