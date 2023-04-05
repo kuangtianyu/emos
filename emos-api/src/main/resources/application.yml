@@ -83,15 +83,15 @@ springdoc:
     disable-swagger-default-url: on
 tencent:
   cloud:
-    appId: 1313021100
-    secretId: AKIDd5KK5aqrd9QRDk24qNefRxEJ9j49nCMG
-    secretKey: iANK2UhfNp2zhBQQAfxzmJacOvCE0Wnq
-    region: ap-nanjing
-    bucket: emos-1313021100
+    appId:
+    secretId:
+    secretKey:
+    region:
+    bucket:
   trtc:
-    appId: 1400802422
-    secretKey: bcb2d169471430f8c84633d3df5e81aec1a08159f90ade7faf15ac51419c19eb
-    expire: 86400
+    appId:
+    secretKey:
+    expire:
 wx:
   app-id: 微信小程序APPID
   app-secret: 微信小程序密钥
@@ -103,4 +103,4 @@ emos:
   tcode: "课程授权码"
   recieveNotify: http://你电脑的IP地址:8090/emos-api/meeting/recieveNotify
 workflow:
-  url: http://192.168.16.1:9090/emos-workflow
+  url: http://你的ip地址:9090/emos-workflow
