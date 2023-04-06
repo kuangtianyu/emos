@@ -136,14 +136,6 @@
 					>
 						删除
 					</el-button>
-					<el-button
-						type="text"
-						size="medium"
-						:disabled="!(scope.row.mine == 'true' && scope.row.status == '未缴纳')"
-						@click="payHandle(scope.row.id)"
-					>
-						交款
-					</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -318,12 +310,6 @@ export default {
                     })
                 })
             }
-        },
-        payHandle:function(id){
-            this.payVisible=true
-            this.$nextTick(()=>{
-                this.$refs.pay.init(id)
-            })
         },
         reportHandle: function() {
             this.$router.push({ name: 'AmectReport' });

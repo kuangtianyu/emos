@@ -106,20 +106,6 @@ public class AmectController {
         return R.ok().put("rows",rows);
     }
 
-    @PostMapping("/createNativeAmectPayOrder")
-    @Operation(summary = "创建Native支付罚款订单")
-    @SaCheckLogin
-    public R createNativeAmectPayOrder(@Valid @RequestBody CreateNativeAmectPayOrderForm form){
-        int userId=StpUtil.getLoginIdAsInt();
-        int amectId= form.getAmectId();
-        HashMap param=new HashMap(){{
-            put("userId",userId);
-            put("amectId",amectId);
-        }};
-        String qrCodeBase64= amectService.createNativeAmectPayOrder(param);
-        return R.ok().put("qrCodeBase64",qrCodeBase64);
-    }
-
     @RequestMapping("/recieveMessage")
     @Operation(summary = "接收通知消息")
     public void recieveMessage(HttpServletRequest request, HttpServletResponse response) throws Exception{
