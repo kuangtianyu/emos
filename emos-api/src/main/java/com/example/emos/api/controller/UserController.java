@@ -52,21 +52,6 @@ public class UserController {
         return R.ok().put("result", bool);
     }
 
-    @PostMapping("/wechatLogin")
-    @Operation(summary = "微信小程序登陆")
-    public R wechatLogin(@Valid @RequestBody WechatLoginForm form) {
-        HashMap map = userService.wechatLogin(form.getUuid());
-        boolean result = (boolean) map.get("result");
-        if (result) {
-            int userId = (int) map.get("userId");
-            StpUtil.setLoginId(userId);
-            Set<String> permissions = userService.searchUserPermissions(userId);
-            map.remove("userId");
-            map.put("permissions", permissions);
-        }
-        return R.ok(map);
-    }
-
     /**
      * 登陆成功后加载用户的基本信息
      */
