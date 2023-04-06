@@ -49,7 +49,7 @@ public class ApprovalController {
 
     @PostMapping("/searchTaskByPage")
     @Operation(summary = "查询分页任务列表")
-    @SaCheckPermission(value = {"WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
+    @SaCheckPermission(value = {"ROOT", "WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
     public R searchTaskByPage(@Valid @RequestBody SearchTaskByPageForm form) {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         int userId = StpUtil.getLoginIdAsInt();
@@ -61,7 +61,7 @@ public class ApprovalController {
 
     @PostMapping("/searchApprovalContent")
     @Operation(summary = "查询任务详情")
-    @SaCheckPermission(value = {"WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
+    @SaCheckPermission(value = {"ROOT", "WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
     public R searchApprovalContent(@Valid @RequestBody SearchApprovalContentForm form) {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         int userId = StpUtil.getLoginIdAsInt();
@@ -73,7 +73,7 @@ public class ApprovalController {
 
     @GetMapping("/searchApprovalBpmn")
     @Operation(summary = "获取BPMN图形")
-    @SaCheckPermission(value = {"WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
+    @SaCheckPermission(value = {"ROOT", "WORKFLOW:APPROVAL", "FILE:ARCHIVE"}, mode = SaMode.OR)
     public void searchApprovalBpmn(String instanceId, HttpServletResponse response) {
         if (StrUtil.isBlankIfStr(instanceId)) {
             throw new EmosException("instanceId不能为空");
@@ -103,7 +103,7 @@ public class ApprovalController {
 
     @PostMapping("/approvalTask")
     @Operation(summary = "审批任务")
-    @SaCheckPermission(value = {"WORKFLOW:APPROVAL"}, mode = SaMode.OR)
+    @SaCheckPermission(value = {"ROOT", "WORKFLOW:APPROVAL"}, mode = SaMode.OR)
     public R approvalTask(@Valid @RequestBody ApprovalTaskForm form){
         HashMap param=JSONUtil.parse(form).toBean(HashMap.class);
         approvalService.approvalTask(param);
@@ -112,7 +112,7 @@ public class ApprovalController {
 
     @PostMapping("/archiveTask")
     @Operation(summary = "归档任务")
-    @SaCheckPermission(value = {"FILE:ARCHIVE"})
+    @SaCheckPermission(value = {"ROOT", "FILE:ARCHIVE"})
     public R archiveTask(@Valid @RequestBody ArchiveTaskForm form){
         if(!JSONUtil.isJsonArray(form.getFiles())){
             return R.error("files不是JSON数组");
