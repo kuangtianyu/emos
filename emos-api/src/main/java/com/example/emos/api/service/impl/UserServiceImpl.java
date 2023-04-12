@@ -115,29 +115,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageUtils searchUserByPage(HashMap param) {
-        ArrayList<HashMap> list=userDao.searchUserByPage(param);
-        long count=userDao.searchUserCount(param);
-        int start=(Integer) param.get("start");
-        int length=(Integer) param.get("length");
-        PageUtils pageUtils=new PageUtils(list,count,start,length);
+        ArrayList<HashMap> list = userDao.searchUserByPage(param);
+        long count = userDao.searchUserCount(param);
+        int start = (Integer) param.get("start");
+        int length = (Integer) param.get("length");
+        PageUtils pageUtils = new PageUtils(list, count, start, length);
         return pageUtils;
     }
 
     @Override
     public int insert(TbUser user) {
-        int rows=userDao.insert(user);
+        int rows = userDao.insert(user);
         return rows;
     }
 
     @Override
     public int update(HashMap param) {
-        int rows= userDao.update(param);
+        int rows = userDao.update(param);
         return rows;
     }
 
     @Override
     public int deleteUserByIds(Integer[] ids) {
-        int rows=userDao.deleteUserByIds(ids);
+        int rows = userDao.deleteUserByIds(ids);
         return rows;
     }
 
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public HashMap searchNameAndDept(int userId) {
-        HashMap map=userDao.searchNameAndDept(userId);
+        HashMap map = userDao.searchNameAndDept(userId);
         return map;
     }
 }

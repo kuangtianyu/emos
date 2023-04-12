@@ -32,60 +32,58 @@ public class MeetingWorkflowTask {
     private String workflow;
 
     @Async("AsyncTaskExecutor")
-    public void startMeetingWorkflow(String uuid, int creatorId,String title, String date, String start,String meetingType){
-        HashMap info=userDao.searchUserInfo(creatorId);
-        JSONObject json=new JSONObject();
+    public void startMeetingWorkflow(String uuid, int creatorId, String title, String date, String start, String meetingType) {
+        HashMap info = userDao.searchUserInfo(creatorId);
+        JSONObject json = new JSONObject();
         json.set("url", recieveNotify);
         json.set("uuid", uuid);
-        json.set("creatorId",creatorId);
-        json.set("creatorName",info.get("name").toString());
-        json.set("title",title);
+        json.set("creatorId", creatorId);
+        json.set("creatorName", info.get("name").toString());
+        json.set("title", title);
         json.set("date", date);
         json.set("start", start);
-        json.set("meetingType",meetingType);
-        String[] roles=info.get("roles").toString().split("，");
-        if(!ArrayUtil.contains(roles,"总经理")){
-            Integer managerId=userDao.searchDeptManagerId(creatorId);
+        json.set("meetingType", meetingType);
+        String[] roles = info.get("roles").toString().split("，");
+        if (!ArrayUtil.contains(roles, "总经理")) {
+            Integer managerId = userDao.searchDeptManagerId(creatorId);
             json.set("managerId", managerId);
-            Integer gmId= userDao.searchGmId();
-            json.set("gmId",gmId);
-            boolean bool=meetingDao.searchMeetingMembersInSameDept(uuid);
-            json.set("sameDept",bool);
+            Integer gmId = userDao.searchGmId();
+            json.set("gmId", gmId);
+            boolean bool = meetingDao.searchMeetingMembersInSameDept(uuid);
+            json.set("sameDept", bool);
         }
         String url = workflow + "/workflow/startMeetingProcess";
-        HttpResponse resp= HttpRequest.post(url).header("Content-Type", "application/json")
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()==200){
-           json=JSONUtil.parseObj(resp.body());
-           String instanceId=json.getStr("instanceId");
-           HashMap param=new HashMap();
-           param.put("uuid",uuid);
-           param.put("instanceId",instanceId);
-           int row=meetingDao.updateMeetingInstanceId(param);
-           if(row!=1){
-               throw new EmosException("保存会议工作流实例ID失败");
-           }
-        }
-        else{
+        if (resp.getStatus() == 200) {
+            json = JSONUtil.parseObj(resp.body());
+            String instanceId = json.getStr("instanceId");
+            HashMap param = new HashMap();
+            param.put("uuid", uuid);
+            param.put("instanceId", instanceId);
+            int row = meetingDao.updateMeetingInstanceId(param);
+            if (row != 1) {
+                throw new EmosException("保存会议工作流实例ID失败");
+            }
+        } else {
             log.error(resp.body());
         }
     }
 
     @Async("AsyncTaskExecutor")
-    public void deleteMeetingApplication(String uuid,String instanceId,String reason){
-        JSONObject json=new JSONObject();
+    public void deleteMeetingApplication(String uuid, String instanceId, String reason) {
+        JSONObject json = new JSONObject();
         json.set("uuid", uuid);
         json.set("instanceId", instanceId);
         json.set("type", "会议申请");
         json.set("reason", reason);
 
-        String url=workflow+"/workflow/deleteProcessById";
-        HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
+        String url = workflow + "/workflow/deleteProcessById";
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()==200){
+        if (resp.getStatus() == 200) {
             log.debug("删除了会议申请");
-        }
-        else{
+        } else {
             log.error(resp.body());
         }
     }

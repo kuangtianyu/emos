@@ -28,18 +28,18 @@ public class AmectServiceImpl implements AmectService {
 
     @Override
     public PageUtils searchAmectByPage(HashMap param) {
-        ArrayList<HashMap> list= amectDao.searchAmectByPage(param);
-        long count=amectDao.searchAmectCount(param);
-        int start=(Integer) param.get("start");
-        int length=(Integer) param.get("length");
-        PageUtils pageUtils=new PageUtils(list,count,start,length);
+        ArrayList<HashMap> list = amectDao.searchAmectByPage(param);
+        long count = amectDao.searchAmectCount(param);
+        int start = (Integer) param.get("start");
+        int length = (Integer) param.get("length");
+        PageUtils pageUtils = new PageUtils(list, count, start, length);
         return pageUtils;
     }
 
     @Override
     @Transactional
     public int insert(ArrayList<TbAmect> list) {
-        list.forEach(one->{
+        list.forEach(one -> {
             amectDao.insert(one);
         });
         return list.size();
@@ -47,19 +47,19 @@ public class AmectServiceImpl implements AmectService {
 
     @Override
     public HashMap searchById(int id) {
-        HashMap map=amectDao.searchById(id);
+        HashMap map = amectDao.searchById(id);
         return map;
     }
 
     @Override
     public int update(HashMap param) {
-        int rows= amectDao.update(param);
+        int rows = amectDao.update(param);
         return rows;
     }
 
     @Override
     public int deleteAmectByIds(Integer[] ids) {
-        int rows=amectDao.deleteAmectByIds(ids);
+        int rows = amectDao.deleteAmectByIds(ids);
         return rows;
     }
 
@@ -67,10 +67,10 @@ public class AmectServiceImpl implements AmectService {
     public String createNativeAmectPayOrder(HashMap param) {
         int userId = MapUtil.getInt(param, "userId");
         int amectId = MapUtil.getInt(param, "amectId");
-        HashMap map=amectDao.searchAmectByCondition(param);
-        if(map!=null&&map.size()>0){
-            String amount=new BigDecimal(MapUtil.getStr(map,"amount")).multiply(new BigDecimal("100")).intValue()+"";
-            try{
+        HashMap map = amectDao.searchAmectByCondition(param);
+        if (map != null && map.size() > 0) {
+            String amount = new BigDecimal(MapUtil.getStr(map, "amount")).multiply(new BigDecimal("100")).intValue() + "";
+            try {
 
                 param.clear();
                 param.put("nonce_str", "随便写的"); //随机字符串
@@ -80,15 +80,15 @@ public class AmectServiceImpl implements AmectService {
                 param.put("spbill_create_ip", "127.0.0.1");
                 param.put("notify_url", "http://s1.nsloop.com:35750/emos-api/amect/recieveMessage");
                 param.put("trade_type", "NATIVE");
-                Map<String,String> result= new HashMap<>();
+                Map<String, String> result = new HashMap<>();
                 String prepayId = result.get("prepay_id");
                 String codeUrl = result.get("code_url");
-                if(prepayId!=null){
+                if (prepayId != null) {
                     param.clear();
                     param.put("prepayId", prepayId);
                     param.put("amectId", amectId);
-                    int rows=amectDao.updatePrepayId(param);
-                    if(rows!=1){
+                    int rows = amectDao.updatePrepayId(param);
+                    if (rows != 1) {
                         throw new EmosException("更新罚款单的支付订单ID失败");
                     }
                     QrConfig qrConfig = new QrConfig();
@@ -97,58 +97,56 @@ public class AmectServiceImpl implements AmectService {
                     qrConfig.setMargin(2);
                     String qrCodeBase64 = QrCodeUtil.generateAsBase64(codeUrl, qrConfig, "jpg");
                     return "qrCodeBase64";
-                }
-                else{
+                } else {
                     log.error("创建支付订单失败", result);
                     throw new EmosException("创建支付订单失败");
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error("创建支付订单失败", e);
                 throw new EmosException("创建支付订单失败");
             }
-        }
-        else{
+        } else {
             throw new EmosException("没有找到罚款单");
         }
     }
 
     @Override
     public int updateStatus(HashMap param) {
-        int rows=amectDao.updateStatus(param);
+        int rows = amectDao.updateStatus(param);
         return rows;
     }
 
     @Override
     public int searchUserIdByUUID(String uuid) {
-        int userId=amectDao.searchUserIdByUUID(uuid);
+        int userId = amectDao.searchUserIdByUUID(uuid);
         return userId;
     }
 
     @Override
     public void searchNativeAmectPayResult(HashMap param) {
-        HashMap map=amectDao.searchAmectByCondition(param);
-        if(MapUtil.isNotEmpty(map)){
-            String uuid=MapUtil.getStr(map,"uuid");
+        HashMap map = amectDao.searchAmectByCondition(param);
+        if (MapUtil.isNotEmpty(map)) {
+            String uuid = MapUtil.getStr(map, "uuid");
             param.clear();
             param.put("appid", "nothing");
             param.put("mch_id", "nothing");
             param.put("out_trade_no", uuid);
             param.put("nonce_str", "nothing");
-            try{
-                param.put("sign","nothing");
-                Map<String,String> result=new HashMap<>();
+            try {
+                param.put("sign", "nothing");
+                Map<String, String> result = new HashMap<>();
                 String returnCode = result.get("return_code");
                 String resultCode = result.get("result_code");
                 if ("SUCCESS".equals(returnCode) && "SUCCESS".equals(resultCode)) {
                     String tradeState = result.get("trade_state");
-                    if("SUCCESS".equals(tradeState)){
-                        amectDao.updateStatus(new HashMap(){{
-                            put("uuid",uuid);
-                            put("status",2);
+                    if ("SUCCESS".equals(tradeState)) {
+                        amectDao.updateStatus(new HashMap() {{
+                            put("uuid", uuid);
+                            put("status", 2);
                         }});
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error("执行异常", e);
                 throw new EmosException("执行异常");
             }

@@ -90,7 +90,7 @@ public class ApprovalController {
                     OutputStream out = response.getOutputStream();
                     BufferedOutputStream bout = new BufferedOutputStream(out);
             ) {
-                IoUtil.copy(bin,bout);
+                IoUtil.copy(bin, bout);
             } catch (Exception e) {
                 log.error("执行异常", e);
             }
@@ -103,8 +103,8 @@ public class ApprovalController {
     @PostMapping("/approvalTask")
     @Operation(summary = "审批任务")
     @SaCheckPermission(value = {"ROOT", "WORKFLOW:APPROVAL"}, mode = SaMode.OR)
-    public R approvalTask(@Valid @RequestBody ApprovalTaskForm form){
-        HashMap param=JSONUtil.parse(form).toBean(HashMap.class);
+    public R approvalTask(@Valid @RequestBody ApprovalTaskForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         approvalService.approvalTask(param);
         return R.ok();
     }
@@ -112,14 +112,14 @@ public class ApprovalController {
     @PostMapping("/archiveTask")
     @Operation(summary = "归档任务")
     @SaCheckPermission(value = {"ROOT", "FILE:ARCHIVE"})
-    public R archiveTask(@Valid @RequestBody ArchiveTaskForm form){
-        if(!JSONUtil.isJsonArray(form.getFiles())){
+    public R archiveTask(@Valid @RequestBody ArchiveTaskForm form) {
+        if (!JSONUtil.isJsonArray(form.getFiles())) {
             return R.error("files不是JSON数组");
         }
-        HashMap param=new HashMap(){{
-            put("taskId",form.getTaskId());
-            put("files",form.getFiles());
-            put("userId",StpUtil.getLoginIdAsInt());
+        HashMap param = new HashMap() {{
+            put("taskId", form.getTaskId());
+            put("files", form.getFiles());
+            put("userId", StpUtil.getLoginIdAsInt());
         }};
         approvalService.archiveTask(param);
         return R.ok();

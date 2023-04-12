@@ -122,9 +122,9 @@ public class MeetingServiceImpl implements MeetingService {
 
     @Override
     public Long searchRoomIdByUUID(String uuid) {
-        if(redisTemplate.hasKey(uuid)){
-            Object temp=redisTemplate.opsForValue().get(uuid);
-            long roomId=Long.parseLong(temp.toString());
+        if (redisTemplate.hasKey(uuid)) {
+            Object temp = redisTemplate.opsForValue().get(uuid);
+            long roomId = Long.parseLong(temp.toString());
             return roomId;
         }
         return null;
@@ -132,19 +132,19 @@ public class MeetingServiceImpl implements MeetingService {
 
     @Override
     public ArrayList<HashMap> searchOnlineMeetingMembers(HashMap param) {
-        ArrayList<HashMap> list=meetingDao.searchOnlineMeetingMembers(param);
+        ArrayList<HashMap> list = meetingDao.searchOnlineMeetingMembers(param);
         return list;
     }
 
     @Override
     public boolean searchCanCheckinMeeting(HashMap param) {
-        long count=meetingDao.searchCanCheckinMeeting(param);
-        return count==1?true:false;
+        long count = meetingDao.searchCanCheckinMeeting(param);
+        return count == 1 ? true : false;
     }
 
     @Override
     public int updateMeetingPresent(HashMap param) {
-        int rows=meetingDao.updateMeetingPresent(param);
+        int rows = meetingDao.updateMeetingPresent(param);
         return rows;
     }
 

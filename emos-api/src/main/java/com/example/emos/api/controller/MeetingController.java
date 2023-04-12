@@ -97,11 +97,11 @@ public class MeetingController {
         String date = form.getDate();
         DateTime startDate, endDate;
         if (date != null && date.length() > 0) {
-            startDate=DateUtil.parseDate(date);
-            endDate=startDate.offsetNew(DateField.DAY_OF_WEEK,6);
-        }else{
-            startDate=DateUtil.beginOfWeek(new Date());
-            endDate=DateUtil.endOfWeek(new Date());
+            startDate = DateUtil.parseDate(date);
+            endDate = startDate.offsetNew(DateField.DAY_OF_WEEK, 6);
+        } else {
+            startDate = DateUtil.beginOfWeek(new Date());
+            endDate = DateUtil.endOfWeek(new Date());
         }
         HashMap param = new HashMap() {{
             put("place", form.getName());
@@ -110,35 +110,35 @@ public class MeetingController {
             put("mold", form.getMold());
             put("userId", StpUtil.getLoginIdAsLong());
         }};
-        ArrayList<HashMap> list=meetingService.searchOfflineMeetingInWeek(param);
-        ArrayList days=new ArrayList();
-        DateRange range=DateUtil.range(startDate,endDate,DateField.DAY_OF_WEEK);
-        range.forEach(one->{
-            JSONObject json=new JSONObject();
-            json.set("date",one.toString("MM/dd"));
-            json.set("day",one.dayOfWeekEnum().toChinese("周"));
+        ArrayList<HashMap> list = meetingService.searchOfflineMeetingInWeek(param);
+        ArrayList days = new ArrayList();
+        DateRange range = DateUtil.range(startDate, endDate, DateField.DAY_OF_WEEK);
+        range.forEach(one -> {
+            JSONObject json = new JSONObject();
+            json.set("date", one.toString("MM/dd"));
+            json.set("day", one.dayOfWeekEnum().toChinese("周"));
             days.add(json);
         });
-        return R.ok().put("list",list).put("days",days);
+        return R.ok().put("list", list).put("days", days);
     }
 
     @PostMapping("/searchMeetingInfo")
     @Operation(summary = "查询会议信息")
     @SaCheckLogin
-    public R searchMeetingInfo(@Valid @RequestBody SearchMeetingInfoForm form){
-        HashMap map=meetingService.searchMeetingInfo(form.getStatus(),form.getId());
+    public R searchMeetingInfo(@Valid @RequestBody SearchMeetingInfoForm form) {
+        HashMap map = meetingService.searchMeetingInfo(form.getStatus(), form.getId());
         return R.ok(map);
     }
 
     @PostMapping("/deleteMeetingApplication")
     @Operation(summary = "删除会议申请")
     @SaCheckLogin
-    public R deleteMeetingApplication(@Valid @RequestBody DeleteMeetingApplicationForm form){
-        HashMap param=JSONUtil.parse(form).toBean(HashMap.class);
-        param.put("creatorId",StpUtil.getLoginIdAsLong());
-        param.put("userId",StpUtil.getLoginIdAsLong());
-        int rows=meetingService.deleteMeetingApplication(param);
-        return R.ok().put("rows",rows);
+    public R deleteMeetingApplication(@Valid @RequestBody DeleteMeetingApplicationForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+        param.put("creatorId", StpUtil.getLoginIdAsLong());
+        param.put("userId", StpUtil.getLoginIdAsLong());
+        int rows = meetingService.deleteMeetingApplication(param);
+        return R.ok().put("rows", rows);
     }
 
     @PostMapping("/searchOnlineMeetingByPage")
@@ -162,43 +162,43 @@ public class MeetingController {
     @GetMapping("/searchMyUserSig")
     @Operation(summary = "获取用户签名")
     @SaCheckLogin
-    public R searchMyUserSig(){
-        int userId=StpUtil.getLoginIdAsInt();
-        String userSig=trtcUtil.genUserSig(userId+"");
-        return R.ok().put("userSig",userSig).put("userId",userId).put("appId",appId);
+    public R searchMyUserSig() {
+        int userId = StpUtil.getLoginIdAsInt();
+        String userSig = trtcUtil.genUserSig(userId + "");
+        return R.ok().put("userSig", userSig).put("userId", userId).put("appId", appId);
     }
 
     @PostMapping("/searchRoomIdByUUID")
     @Operation(summary = "查询视频会议室RoomId")
     @SaCheckLogin
-    public R searchRoomIdByUUID(@Valid @RequestBody SearchRoomIdByUUIDForm form){
-        Long roomId=meetingService.searchRoomIdByUUID(form.getUuid());
-        return R.ok().put("roomId",roomId);
+    public R searchRoomIdByUUID(@Valid @RequestBody SearchRoomIdByUUIDForm form) {
+        Long roomId = meetingService.searchRoomIdByUUID(form.getUuid());
+        return R.ok().put("roomId", roomId);
     }
 
     @PostMapping("/searchOnlineMeetingMembers")
     @Operation(summary = "查询线下会议成员")
     @SaCheckLogin
-    public R searchOnlineMeetingMembers(@Valid @RequestBody SearchOnlineMeetingMembersForm form){
-        HashMap param=JSONUtil.parse(form).toBean(HashMap.class);
-        param.put("userId",StpUtil.getLoginIdAsInt());
-        ArrayList<HashMap> list=meetingService.searchOnlineMeetingMembers(param);
-        return R.ok().put("list",list);
+    public R searchOnlineMeetingMembers(@Valid @RequestBody SearchOnlineMeetingMembersForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+        param.put("userId", StpUtil.getLoginIdAsInt());
+        ArrayList<HashMap> list = meetingService.searchOnlineMeetingMembers(param);
+        return R.ok().put("list", list);
     }
 
     @PostMapping("/updateMeetingPresent")
     @Operation(summary = "执行会议签到")
     @SaCheckLogin
-    public R updateMeetingPresent(@Valid @RequestBody UpdateMeetingPresentForm form){
-        HashMap param=new HashMap(){{
-            put("meetingId",form.getMeetingId());
-            put("userId",StpUtil.getLoginIdAsInt());
+    public R updateMeetingPresent(@Valid @RequestBody UpdateMeetingPresentForm form) {
+        HashMap param = new HashMap() {{
+            put("meetingId", form.getMeetingId());
+            put("userId", StpUtil.getLoginIdAsInt());
         }};
-        boolean bool=meetingService.searchCanCheckinMeeting(param);
-        if(bool){
-            int rows=meetingService.updateMeetingPresent(param);
-            return R.ok().put("rows",rows);
+        boolean bool = meetingService.searchCanCheckinMeeting(param);
+        if (bool) {
+            int rows = meetingService.updateMeetingPresent(param);
+            return R.ok().put("rows", rows);
         }
-        return R.ok().put("rows",0);
+        return R.ok().put("rows", 0);
     }
 }

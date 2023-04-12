@@ -32,46 +32,46 @@ public class LeaveWorkflowTask {
     private TbLeaveDao leaveDao;
 
     @Async("AsyncTaskExecutor")
-    public void startLeaveWorkflow(int id,int creatorId,String days){
-        HashMap info=userDao.searchUserInfo(creatorId);
-        JSONObject json=new JSONObject();
-        json.set("url",recieveNotify);
+    public void startLeaveWorkflow(int id, int creatorId, String days) {
+        HashMap info = userDao.searchUserInfo(creatorId);
+        JSONObject json = new JSONObject();
+        json.set("url", recieveNotify);
         json.set("creatorId", creatorId);
         json.set("creatorName", info.get("name").toString());
-        json.set("title",info.get("dept").toString()+info.get("name").toString()+"的请假");
-        Integer managerId=userDao.searchDeptManagerId(creatorId);
-        json.set("managerId",managerId);
-        Integer gmId=userDao.searchGmId();
-        json.set("gmId",gmId);
-        json.set("days",Double.parseDouble(days));
+        json.set("title", info.get("dept").toString() + info.get("name").toString() + "的请假");
+        Integer managerId = userDao.searchDeptManagerId(creatorId);
+        json.set("managerId", managerId);
+        Integer gmId = userDao.searchGmId();
+        json.set("gmId", gmId);
+        json.set("days", Double.parseDouble(days));
         String url = workflow + "/workflow/startLeaveProcess";
-        HttpResponse resp= HttpRequest.post(url).header("Content-Type", "application/json")
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()==200){
-            json=JSONUtil.parseObj(resp.body());
-            String instanceId=json.getStr("instanceId");
-            HashMap param=new HashMap();
-            param.put("id",id);
-            param.put("instanceId",instanceId);
-            int rows=leaveDao.updateLeaveInstanceId(param);
-            if(rows!=1){
+        if (resp.getStatus() == 200) {
+            json = JSONUtil.parseObj(resp.body());
+            String instanceId = json.getStr("instanceId");
+            HashMap param = new HashMap();
+            param.put("id", id);
+            param.put("instanceId", instanceId);
+            int rows = leaveDao.updateLeaveInstanceId(param);
+            if (rows != 1) {
                 throw new EmosException("保存请假工作流实例ID失败");
             }
-        }else{
+        } else {
             log.error(resp.body());
         }
     }
 
     @Async("AsyncTaskExecutor")
-    public void deleteLeaveWorkflow(String instanceId,String type,String reason){
-        JSONObject json=new JSONObject();
+    public void deleteLeaveWorkflow(String instanceId, String type, String reason) {
+        JSONObject json = new JSONObject();
         json.set("instanceId", instanceId);
         json.set("type", type);
         json.set("reason", reason);
         String url = workflow + "/workflow/deleteProcessById";
-        HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()!=200){
+        if (resp.getStatus() != 200) {
             log.error(resp.body());
             throw new EmosException("请假工作流删除失败");
         }

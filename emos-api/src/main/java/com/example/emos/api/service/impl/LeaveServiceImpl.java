@@ -23,27 +23,27 @@ public class LeaveServiceImpl implements LeaveService {
 
     @Override
     public PageUtils searchLeaveByPage(HashMap param) {
-        ArrayList<HashMap> list=leaveDao.searchLeaveByPage(param);
-        long count=leaveDao.searchLeaveCount(param);
-        int start=(Integer) param.get("start");
-        int length=(Integer) param.get("length");
-        PageUtils pageUtils=new PageUtils(list,count,start,length);
+        ArrayList<HashMap> list = leaveDao.searchLeaveByPage(param);
+        long count = leaveDao.searchLeaveCount(param);
+        int start = (Integer) param.get("start");
+        int length = (Integer) param.get("length");
+        PageUtils pageUtils = new PageUtils(list, count, start, length);
         return pageUtils;
     }
 
     @Override
     public boolean searchContradiction(HashMap param) {
-        long count=leaveDao.searchContradiction(param);
-        boolean bool=count>0;
+        long count = leaveDao.searchContradiction(param);
+        boolean bool = count > 0;
         return bool;
     }
 
     @Override
     public int insert(TbLeave leave) {
-        int rows=leaveDao.insert(leave);
-        if(rows==1){
-            leaveWorkflowTask.startLeaveWorkflow(leave.getId(),leave.getUserId(),leave.getDays());
-        }else{
+        int rows = leaveDao.insert(leave);
+        if (rows == 1) {
+            leaveWorkflowTask.startLeaveWorkflow(leave.getId(), leave.getUserId(), leave.getDays());
+        } else {
             throw new EmosException("会议添加失败");
         }
         return rows;
@@ -51,13 +51,12 @@ public class LeaveServiceImpl implements LeaveService {
 
     @Override
     public int deleteLeaveById(HashMap param) {
-        int id= MapUtil.getInt(param,"id");
-        String instanceId=leaveDao.searchInstanceIdById(id);
-        int rows=leaveDao.deleteLeaveById(param);
-        if(rows==1){
-            leaveWorkflowTask.deleteLeaveWorkflow(instanceId,"员工请假","删除请假申请");
-        }
-        else{
+        int id = MapUtil.getInt(param, "id");
+        String instanceId = leaveDao.searchInstanceIdById(id);
+        int rows = leaveDao.deleteLeaveById(param);
+        if (rows == 1) {
+            leaveWorkflowTask.deleteLeaveWorkflow(instanceId, "员工请假", "删除请假申请");
+        } else {
             throw new EmosException("删除请假申请失败");
         }
         return rows;
@@ -65,7 +64,7 @@ public class LeaveServiceImpl implements LeaveService {
 
     @Override
     public HashMap searchLeaveById(HashMap param) {
-        HashMap map=leaveDao.searchLeaveById(param);
+        HashMap map = leaveDao.searchLeaveById(param);
         return map;
     }
 }

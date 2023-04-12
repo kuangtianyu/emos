@@ -32,45 +32,45 @@ public class ReimWorkflowTask {
     private TbReimDao reimDao;
 
     @Async("AsyncTaskExecutor")
-    public void startReimWorkflow(int id, int creatorId){
-        HashMap info=userDao.searchUserInfo(creatorId);
-        JSONObject json=new JSONObject();
-        json.set("url",recieveNotify);
+    public void startReimWorkflow(int id, int creatorId) {
+        HashMap info = userDao.searchUserInfo(creatorId);
+        JSONObject json = new JSONObject();
+        json.set("url", recieveNotify);
         json.set("creatorId", creatorId);
         json.set("creatorName", info.get("name").toString());
         json.set("title", info.get("dept").toString() + info.get("name").toString() + "的报销");
-        Integer managerId= userDao.searchDeptManagerId(creatorId);
-        json.set("managerId",managerId);
-        Integer gmId=userDao.searchGmId();
-        json.set("gmId",gmId);
+        Integer managerId = userDao.searchDeptManagerId(creatorId);
+        json.set("managerId", managerId);
+        Integer gmId = userDao.searchGmId();
+        json.set("gmId", gmId);
         String url = workflow + "/workflow/startReimProcess";
-        HttpResponse resp= HttpRequest.post(url).header("Content-Type", "application/json")
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()==200){
-            json=JSONUtil.parseObj(resp.body());
-            String instanceId=json.getStr("instanceId");
-            HashMap param=new HashMap();
-            param.put("id",id);
-            param.put("instanceId",instanceId);
-            int rows=reimDao.updateReimInstanceId(param);
-            if(rows!=1){
+        if (resp.getStatus() == 200) {
+            json = JSONUtil.parseObj(resp.body());
+            String instanceId = json.getStr("instanceId");
+            HashMap param = new HashMap();
+            param.put("id", id);
+            param.put("instanceId", instanceId);
+            int rows = reimDao.updateReimInstanceId(param);
+            if (rows != 1) {
                 throw new EmosException("保存报销申请工作流实例ID失败");
             }
-        }else{
+        } else {
             log.error(resp.body());
         }
     }
 
     @Async("AsyncTaskExecutor")
-    public void deleteReimWorkflow(String instanceId,String type,String reason){
-        JSONObject json=new JSONObject();
-        json.set("instanceId",instanceId);
-        json.set("type",type);
-        json.set("reason",reason);
+    public void deleteReimWorkflow(String instanceId, String type, String reason) {
+        JSONObject json = new JSONObject();
+        json.set("instanceId", instanceId);
+        json.set("type", type);
+        json.set("reason", reason);
         String url = workflow + "/workflow/deleteProcessById";
-        HttpResponse resp=HttpRequest.post(url).header("Content-Type", "application/json")
+        HttpResponse resp = HttpRequest.post(url).header("Content-Type", "application/json")
                 .body(json.toString()).execute();
-        if(resp.getStatus()!=200){
+        if (resp.getStatus() != 200) {
             log.error(resp.body());
             throw new EmosException("报销工作流删除失败");
         }

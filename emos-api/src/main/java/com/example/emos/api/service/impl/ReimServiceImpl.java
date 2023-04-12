@@ -27,21 +27,20 @@ public class ReimServiceImpl implements ReimService {
 
     @Override
     public PageUtils searchReimByPage(HashMap param) {
-        ArrayList<HashMap> list=reimDao.searchReimByPage(param);
-        long count=reimDao.searchReimCount(param);
-        int start=(Integer)param.get("start");
-        int length=(Integer)param.get("length");
-        PageUtils pageUtils=new PageUtils(list,count,start,length);
+        ArrayList<HashMap> list = reimDao.searchReimByPage(param);
+        long count = reimDao.searchReimCount(param);
+        int start = (Integer) param.get("start");
+        int length = (Integer) param.get("length");
+        PageUtils pageUtils = new PageUtils(list, count, start, length);
         return pageUtils;
     }
 
     @Override
     public int insert(TbReim reim) {
-        int rows=reimDao.insert(reim);
-        if(rows==1){
-            reimWorkflowTask.startReimWorkflow(reim.getId(),reim.getUserId());
-        }
-        else{
+        int rows = reimDao.insert(reim);
+        if (rows == 1) {
+            reimWorkflowTask.startReimWorkflow(reim.getId(), reim.getUserId());
+        } else {
             throw new EmosException("报销申请保存失败");
         }
         return rows;
@@ -49,24 +48,24 @@ public class ReimServiceImpl implements ReimService {
 
     @Override
     public HashMap searchReimById(HashMap param) {
-        HashMap map=reimDao.searchReimById(param);
-        String instanceId= MapUtil.getStr(map,"instanceId");
-        QrConfig qrConfig=new QrConfig();
+        HashMap map = reimDao.searchReimById(param);
+        String instanceId = MapUtil.getStr(map, "instanceId");
+        QrConfig qrConfig = new QrConfig();
         qrConfig.setWidth(70);
         qrConfig.setHeight(70);
         qrConfig.setMargin(2);
-        String qrCodeBase64= QrCodeUtil.generateAsBase64(instanceId,qrConfig,"jpg");
-        map.put("qrCodeBase64",qrCodeBase64);
+        String qrCodeBase64 = QrCodeUtil.generateAsBase64(instanceId, qrConfig, "jpg");
+        map.put("qrCodeBase64", qrCodeBase64);
         return map;
     }
 
     @Override
     public int deleteReimById(HashMap param) {
-        int id=MapUtil.getInt(param,"id");
-        String instanceId=reimDao.searchInstanceIdById(id);
-        int rows=reimDao.deleteReimById(param);
-        if(rows==1){
-            reimWorkflowTask.deleteReimWorkflow(instanceId,"报销申请","删除报销申请");
+        int id = MapUtil.getInt(param, "id");
+        String instanceId = reimDao.searchInstanceIdById(id);
+        int rows = reimDao.deleteReimById(param);
+        if (rows == 1) {
+            reimWorkflowTask.deleteReimWorkflow(instanceId, "报销申请", "删除报销申请");
         }
         return rows;
     }

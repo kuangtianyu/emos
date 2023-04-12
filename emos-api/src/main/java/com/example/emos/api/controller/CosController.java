@@ -24,7 +24,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/cos")
 @Slf4j
-@Tag(name="CosController",description = "对象存储Web接口")
+@Tag(name = "CosController", description = "对象存储Web接口")
 public class CosController {
     @Autowired
     private CosUtil cosUtil;
@@ -32,15 +32,15 @@ public class CosController {
     @PostMapping("/uploadCosFile")
     @SaCheckLogin
     @Operation(summary = "上传文件")
-    public R uploadCosFile(@Param("file") MultipartFile file, @Param("type") String type){
-        TypeEnum typeEnum=TypeEnum.findByKey(type);
-        if(typeEnum==null){
+    public R uploadCosFile(@Param("file") MultipartFile file, @Param("type") String type) {
+        TypeEnum typeEnum = TypeEnum.findByKey(type);
+        if (typeEnum == null) {
             throw new EmosException("type类型错误");
         }
-        try{
-            HashMap map=cosUtil.uploadFile(file,typeEnum);
+        try {
+            HashMap map = cosUtil.uploadFile(file, typeEnum);
             return R.ok(map);
-        }catch (IOException e){
+        } catch (IOException e) {
             log.error("文件上传到腾讯云错误", e);
             throw new EmosException("文件上传到腾讯云错误");
         }
@@ -49,7 +49,7 @@ public class CosController {
     @PostMapping("/deleteCosFile")
     @SaCheckLogin
     @Operation(summary = "删除文件")
-    public R deleteCosFile(@Valid @RequestBody DeleteCosFileForm form){
+    public R deleteCosFile(@Valid @RequestBody DeleteCosFileForm form) {
         cosUtil.deleteFile(form.getPathes());
         return R.ok();
     }

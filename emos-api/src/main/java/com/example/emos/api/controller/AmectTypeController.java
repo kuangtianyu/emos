@@ -66,7 +66,7 @@ public class AmectTypeController {
     @Operation(summary = "更新罚款类型")
     @SaCheckPermission(value = {"ROOT"})
     public R update(@Valid @RequestBody UpdateAmectTypeByIdForm form) {
-        HashMap param=JSONUtil.parse(form).toBean(HashMap.class);
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         int rows = amectTypeService.update(param);
         return R.ok().put("rows", rows);
     }
