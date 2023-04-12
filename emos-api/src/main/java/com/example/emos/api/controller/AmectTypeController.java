@@ -17,6 +17,9 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @RestController
 @RequestMapping("/amect_type")
 @Tag(name = "AmectTypeController", description = "罚款类型Web接口")

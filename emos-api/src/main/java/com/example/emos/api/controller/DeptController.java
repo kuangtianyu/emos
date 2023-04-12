@@ -17,6 +17,9 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @RestController
 @RequestMapping("/dept")
 @Tag(name = "DeptController", description = "部门Web接口")
