@@ -8,7 +8,7 @@
         <nav class="site-navbar" :class="'site-navbar--' + navbarLayoutType">
             <div class="site-navbar__header">
                 <h1 class="site-navbar__brand">
-                    <a class="site-navbar__brand-lg">Emos在线办公系统</a>
+                    <a class="site-navbar__brand-lg">Skier在线办公系统</a>
                     <a class="site-navbar__brand-mini">OA</a>
                 </h1>
             </div>
