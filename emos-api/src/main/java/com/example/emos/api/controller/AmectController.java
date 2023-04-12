@@ -11,12 +11,10 @@ import com.example.emos.api.common.util.R;
 import com.example.emos.api.controller.form.*;
 import com.example.emos.api.db.pojo.TbAmect;
 import com.example.emos.api.service.AmectService;
-import com.example.emos.api.websocket.WebSocketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.Reader;
-import java.io.Writer;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/amect")
