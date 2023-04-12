@@ -314,7 +314,7 @@ export default {
                     ],
                     series: [
                         {
-                            name: '已交费',
+                            name: '未交费',
                             type: 'line',
                             stack: '总量',
                             areaStyle: {},
@@ -325,7 +325,7 @@ export default {
                             data: data_1
                         },
                         {
-                            name: '未交费',
+                            name: '已交费',
                             type: 'line',
                             stack: '总量',
                             areaStyle: {},
