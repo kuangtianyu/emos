@@ -25,6 +25,7 @@ public class MeetingServiceImpl implements MeetingService {
     private RedisTemplate redisTemplate;
 
 
+    @Override
     public HashMap searchMeetingByInstanceId(String instanceId) {
         HashMap map = meetingDao.searchMeetingByInstanceId(instanceId);
         String date = map.get("date").toString();
@@ -67,13 +68,13 @@ public class MeetingServiceImpl implements MeetingService {
 
     @Override
     public ArrayList<Integer> searchMeetingUnpresent(String uuid) {
-        ArrayList<Integer> list=meetingDao.searchMeetingUnpresent(uuid);
+        ArrayList<Integer> list = meetingDao.searchMeetingUnpresent(uuid);
         return list;
     }
 
     @Override
     public int updateMeetingUnpresent(HashMap param) {
-        int rows=meetingDao.updateMeetingUnpresent(param);
+        int rows = meetingDao.updateMeetingUnpresent(param);
         return rows;
     }
 }
