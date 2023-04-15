@@ -16,7 +16,7 @@ public class SearchTaskByPageForm {
     @Pattern(regexp = "^[\\e4e00-\\u9fa5]{2,20}$", message = "creatorName内容不正确")
     private String creatorName;
 
-    @Pattern(regexp = "^员工请假$|^会议申请$", message = "type内容不正确")
+    @Pattern(regexp = "^员工请假$|^会议申请$|^报销申请$", message = "type内容不正确")
     private String type;
 
     @Pattern(regexp = "^[0-9a-zA-Z\\-]{36}$", message = "instanceId内容不正确")
