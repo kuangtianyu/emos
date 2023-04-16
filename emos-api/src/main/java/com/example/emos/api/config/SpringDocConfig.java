@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "emos-api",
                 description = "Emos管理系统后端Java项目",
-                version = "1.0"
+                version = "2.0"
         )
 )
 
