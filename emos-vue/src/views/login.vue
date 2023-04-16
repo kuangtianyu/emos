@@ -12,7 +12,7 @@
                     <el-col :span="12">
                         <div class="right">
                             <div class="title-container">
-                                <h2>Emos在线办公平台</h2>
+                                <h2>SKIER在线办公平台</h2>
                             </div>
                             <div v-if="!qrCodeVisible">
                                 <div class="row">
