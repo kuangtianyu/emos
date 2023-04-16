@@ -33,7 +33,7 @@ public class NotifyReimService implements JavaDelegate {
 
         HistoricTaskInstance taskInstance = historyService.createHistoricTaskInstanceQuery().includeProcessVariables()
                 .includeTaskLocalVariables().processInstanceId(delegateExecution.getProcessInstanceId())
-                .orderByHistoricTaskInstanceEndTime().list().get(0);
+                .orderByHistoricTaskInstanceEndTime().desc().list().get(0);
         String result = taskInstance.getTaskLocalVariables().get("result").toString();
         delegateExecution.setVariable("result", result);
         String instanceId = delegateExecution.getProcessInstanceId();
