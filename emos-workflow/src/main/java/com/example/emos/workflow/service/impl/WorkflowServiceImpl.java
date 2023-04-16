@@ -86,7 +86,9 @@ public class WorkflowServiceImpl implements WorkflowService {
 
     @Override
     public String startReimProcess(HashMap param) {
-        String instanceId = runtimeService.startProcessInstanceByKey("reim", param).getProcessInstanceId(); //启动工作流
+        String instanceId = runtimeService
+                .startProcessInstanceByKey("reim", param)
+                .getProcessInstanceId(); //启动工作流
         return instanceId;
     }
 
@@ -102,6 +104,10 @@ public class WorkflowServiceImpl implements WorkflowService {
         taskService.complete(taskId);
     }
 
+    /**
+     * 归档
+     * @param param
+     */
     @Override
     public void archiveTask(HashMap param) {
         String taskId = MapUtil.getStr(param, "taskId");
@@ -136,7 +142,7 @@ public class WorkflowServiceImpl implements WorkflowService {
         if (count > 0) {
             historyService.deleteHistoricProcessInstance(instanceId);
         }
-        if (type.equals("会议申请")) {
+        if ("会议申请".equals(type)) {
             quartzUtil.deleteJob(uuid, "会议开始任务组");
             quartzUtil.deleteJob(uuid, "会议结束任务组");
             quartzUtil.deleteJob(uuid, "会议工作流组");
@@ -176,7 +182,9 @@ public class WorkflowServiceImpl implements WorkflowService {
 
         if ("待审批".equals(status)) {
             TaskQuery taskQuery = taskService.createTaskQuery().orderByTaskCreateTime().desc()
-                    .includeProcessVariables().includeTaskLocalVariables().taskAssigneeIds(assignee);
+                    .includeTaskLocalVariables()
+                    .includeProcessVariables()
+                    .taskAssigneeIds(assignee);
             if (StrUtil.isNotBlank(creatorName)) {
                 taskQuery.processVariableValueEquals("creatorName", creatorName);
             }
