@@ -114,7 +114,7 @@ public class ApprovalController {
 
     @PostMapping("/archiveTask")
     @Operation(summary = "归档任务")
-    @SaCheckPermission(value = {"ROOT", "FILE:ARCHIVE"})
+    @SaCheckPermission(value = {"ROOT", "FILE:ARCHIVE"}, mode = SaMode.OR)
     public R archiveTask(@Valid @RequestBody ArchiveTaskForm form) {
         if (!JSONUtil.isJsonArray(form.getFiles())) {
             return R.error("files不是JSON数组");
