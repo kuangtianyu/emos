@@ -63,8 +63,6 @@ public class WorkFlowController {
         param.put("filing", false);
         param.put("type", "会议申请");
         param.put("createDate", DateUtil.today());
-
-        param.remove("code");
         if (form.getGmId() == null) {
             param.put("identity", "总经理");
             param.put("result", "同意");
@@ -88,7 +86,6 @@ public class WorkFlowController {
         param.put("filing", false);
         param.put("type", "员工请假");
         param.put("createDate", DateUtil.today());
-        param.remove("code");
         String instanceId = workflowService.startLeaveProcess(param);
         return R.ok().put("instanceId", instanceId);
     }
@@ -103,7 +100,6 @@ public class WorkFlowController {
         param.put("filing", false);
         param.put("type", "报销申请");
         param.put("createDate", DateUtil.today());
-        param.remove("code");
         String instanceId = workflowService.startReimProcess(param);
         return R.ok().put("instanceId", instanceId);
     }
