@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbLeaveDao {
     HashMap searchLeaveByInstanceId(String instanceId);

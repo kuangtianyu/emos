@@ -20,6 +20,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @Author: kty
+ */
 @Slf4j
 @Component
 public class NotifyMeetingService implements JavaDelegate {

@@ -19,6 +19,9 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.IOException;
 
+/**
+ * @Author: kty
+ */
 @Configuration
 public class DroolsConfiguration {
 

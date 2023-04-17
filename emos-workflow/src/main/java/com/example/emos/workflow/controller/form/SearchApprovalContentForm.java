@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.validation.constraints.*;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class SearchApprovalContentForm {
     @NotBlank(message = "instanceId不能为空")

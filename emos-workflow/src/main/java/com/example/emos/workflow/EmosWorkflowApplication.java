@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import java.awt.*;
 import java.io.InputStream;
 
+/**
+ * @Author: kty
+ */
 @SpringBootApplication
 @EnableAsync
 @Slf4j

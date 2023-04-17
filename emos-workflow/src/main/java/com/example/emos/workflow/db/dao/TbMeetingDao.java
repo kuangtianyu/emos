@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbMeetingDao {
     HashMap searchMeetingByInstanceId(String instanceId);
