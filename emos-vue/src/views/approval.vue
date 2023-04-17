@@ -1,5 +1,5 @@
 <template>
-	<div v-if="isAuth(['ROOT', 'WORKFLOW:APPROVAL', 'FILE:ARCHIVE'])">
+	<div v-if="isAuth(['ROOT', 'WORKFLOW:APPROVAL'])">
 		<el-form :inline="true" :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="searchHandle()">
 			<el-form-item prop="creatorName">
 				<el-input v-model="dataForm.creatorName" size="medium" placeholder="申请人" clearable="clearable" />
@@ -144,12 +144,6 @@
 								</tr>
 							</tbody>
 						</table>
-						<el-image
-							class="archive"
-							v-if="content.hasOwnProperty('files')"
-							:src="content.files[0].url"
-							:preview-src-list="archiveList"
-						></el-image>
 						<el-image class="bpmn" :src="bpmnUrl" :preview-src-list="bpmnList"></el-image>
 					</div>
 				</template>
@@ -188,14 +182,6 @@
 					>
 						查看
 					</el-button>
-					<el-button
-						type="text"
-						size="medium"
-						v-if="isAuth(['ROOT', 'FILE:ARCHIVE']) && scope.row.filing"
-						@click="archive(scope.row.taskId)"
-					>
-						归档
-					</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -208,16 +194,11 @@
 			:total="totalCount"
 			layout="total, sizes, prev, pager, next, jumper"
 		></el-pagination>
-		<archive v-if="archiveVisible" ref="archive" @refreshDataList="loadDataList"></archive>
 	</div>
 </template>
 
 <script>
-import Archive from './archive.vue';
 export default {
-	components: {
-		Archive
-	},
 	data: function() {
 		return {
 			pageIndex: 1,
@@ -225,7 +206,6 @@ export default {
 			totalPage: 0,
 			dataListLoading: false,
 			dataListSelections: [],
-			archiveVisible: false,
 			dataForm: {
 				creatorName: null,
 				type: null,
@@ -236,7 +216,6 @@ export default {
 			content: {},
 			bpmnUrl: null,
 			bpmnList: [],
-			archiveList: [],
 			dataRule: {
 				creatorName: [{ required: false, pattern: '^[\u4e00-\u9fa5]{2,20}$', message: '姓名格式错误' }],
 				instanceId: [
@@ -307,11 +286,6 @@ export default {
 					that.$http('approval/searchApprovalContent', 'POST', data, false, function(resp) {
 						let content = resp.content;
 						that.content = content;
-						if (content.hasOwnProperty('files')) {
-							for (let one of content.files) {
-								that.archiveList.push(one.url);
-							}
-						}
 
 						if (row.type == '报销申请') {
 							if (content.typeId == 1) {
@@ -365,12 +339,6 @@ export default {
 		},
 		viewHandle: function(row) {
 			this.$refs.approvalTable.toggleRowExpansion(row, true);
-		},
-		archive: function(taskId) {
-			this.archiveVisible = true;
-			this.$nextTick(() => {
-				this.$refs.archive.init(taskId);
-			});
 		}
 	},
 	created: function() {

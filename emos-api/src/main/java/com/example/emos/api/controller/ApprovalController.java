@@ -111,20 +111,4 @@ public class ApprovalController {
         approvalService.approvalTask(param);
         return R.ok();
     }
-
-    @PostMapping("/archiveTask")
-    @Operation(summary = "归档任务")
-    @SaCheckPermission(value = {"ROOT", "FILE:ARCHIVE"}, mode = SaMode.OR)
-    public R archiveTask(@Valid @RequestBody ArchiveTaskForm form) {
-        if (!JSONUtil.isJsonArray(form.getFiles())) {
-            return R.error("files不是JSON数组");
-        }
-        HashMap param = new HashMap() {{
-            put("taskId", form.getTaskId());
-            put("files", form.getFiles());
-            put("userId", StpUtil.getLoginIdAsInt());
-        }};
-        approvalService.archiveTask(param);
-        return R.ok();
-    }
 }
