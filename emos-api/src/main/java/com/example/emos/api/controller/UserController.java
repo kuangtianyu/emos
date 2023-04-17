@@ -29,31 +29,9 @@ import java.util.Set;
 @RequestMapping("/user")
 @Tag(name = "UserController", description = "用户Web接口")
 public class UserController {
+
     @Autowired
     private UserService userService;
-
-    /**
-     * 生成登陆二维码的字符串
-     */
-    @GetMapping("/createQrCode")
-    @Operation(summary = "生成二维码Base64格式的字符串")
-    public R createQrCode() {
-        HashMap map = userService.createQrCode();
-        return R.ok(map);
-    }
-
-    /**
-     * 检测登陆验证码
-     *
-     * @param form
-     * @return
-     */
-    @PostMapping("/checkQrCode")
-    @Operation(summary = "检测登陆验证码")
-    public R checkQrCode(@Valid @RequestBody CheckQrCodeForm form) {
-        boolean bool = userService.checkQrCode(form.getCode(), form.getUuid());
-        return R.ok().put("result", bool);
-    }
 
     /**
      * 登陆成功后加载用户的基本信息

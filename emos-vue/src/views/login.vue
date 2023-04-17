@@ -99,13 +99,6 @@ export default {
                     }
                 });
             }
-        },
-        //加载二维码图片的封装方法
-        loadQRCode: function() {
-            this.$http('user/createQrCode', 'GET', null, true, resp => {
-                this.qrCode = resp.pic;
-                this.uuid = resp.uuid;
-            });
         }
     }
 };
