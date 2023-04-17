@@ -6,9 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbRoleDao {
+
     public ArrayList<HashMap> searchAllRole();
 
     public HashMap searchById(int id);

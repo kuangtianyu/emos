@@ -5,9 +5,13 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "归档任务表单")
 public class ArchiveTaskForm {
+
     @NotBlank(message = "taskId不能为空")
     @Schema(description = "任务ID")
     private String taskId;

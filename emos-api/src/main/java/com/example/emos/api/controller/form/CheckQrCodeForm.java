@@ -5,9 +5,13 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "检验登陆验证码表单")
 public class CheckQrCodeForm {
+
     @NotBlank(message = "uuid不能为空")
     @Schema(description = "uuid")
     private String uuid;

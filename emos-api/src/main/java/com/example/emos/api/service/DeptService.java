@@ -6,6 +6,9 @@ import com.example.emos.api.db.pojo.TbDept;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface DeptService {
     public ArrayList<HashMap> searchAllDept();
 

@@ -9,6 +9,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询任务分页列表表单")
 public class SearchTaskByPageForm {

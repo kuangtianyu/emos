@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Service
 public class AmectTypeServiceImpl implements AmectTypeService {
     @Autowired

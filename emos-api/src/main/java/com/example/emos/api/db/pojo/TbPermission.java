@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * sys_config
- * @author 
+ * @author kty
  */
 @Data
 public class TbPermission implements Serializable {

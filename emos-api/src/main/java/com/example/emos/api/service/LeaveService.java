@@ -5,6 +5,9 @@ import com.example.emos.api.db.pojo.TbLeave;
 
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface LeaveService {
     public PageUtils searchLeaveByPage(HashMap param);
     public boolean searchContradiction(HashMap param);

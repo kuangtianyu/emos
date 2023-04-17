@@ -6,8 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbAmectTypeDao {
+
     public ArrayList<TbAmectType> searchAllAmectType();
 
     public ArrayList<HashMap> searchAmectTypeByPage(HashMap param);

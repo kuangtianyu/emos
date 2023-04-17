@@ -5,6 +5,9 @@ import com.example.emos.api.db.pojo.TbReim;
 
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface ReimService {
     public PageUtils searchReimByPage(HashMap param);
     public int insert(TbReim reim);

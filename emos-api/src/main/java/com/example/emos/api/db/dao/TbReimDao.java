@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbReimDao {
     public ArrayList<HashMap> searchReimByPage(HashMap param);

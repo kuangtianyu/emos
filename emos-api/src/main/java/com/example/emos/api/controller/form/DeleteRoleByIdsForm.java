@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "删除角色表单")
 public class DeleteRoleByIdsForm {

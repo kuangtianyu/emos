@@ -6,6 +6,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @Author: kty
+ */
 @Configuration
 @OpenAPIDefinition(
         info = @Info(

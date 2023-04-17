@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @Author: kty
+ */
 @Component
 public class StpInterfaceImpl implements StpInterface {
     @Autowired

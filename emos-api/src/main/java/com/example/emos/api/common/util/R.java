@@ -5,7 +5,9 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @Author: kty
+ */
 public class R extends HashMap<String, Object> {
 
     public R() {

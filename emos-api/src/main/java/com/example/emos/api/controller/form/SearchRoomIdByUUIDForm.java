@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询在线会议室房间ID")
 public class SearchRoomIdByUUIDForm {

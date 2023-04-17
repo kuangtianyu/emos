@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.validation.constraints.*;
 
+/**
+ * @Author: kty
+ */
 @Schema(description = "修改用户信息表单")
 @Data
 public class UpdateUserForm {

@@ -2,6 +2,9 @@ package com.example.emos.api.exception;
 
 import lombok.Data;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class EmosException extends RuntimeException {
     private String msg;

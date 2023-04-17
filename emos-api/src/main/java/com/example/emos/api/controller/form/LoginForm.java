@@ -6,9 +6,13 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "登陆表单类")
 public class LoginForm {
+
     @NotBlank(message = "username不能为空")
     @Pattern(regexp = "^[a-zA-Z0-9]{5,20}$", message = "username内容不正确")
     @Schema(description = "用户名")

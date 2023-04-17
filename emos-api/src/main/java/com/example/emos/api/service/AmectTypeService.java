@@ -6,6 +6,9 @@ import com.example.emos.api.db.pojo.TbAmectType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface AmectTypeService {
     public ArrayList<TbAmectType> searchAllAmectType();
 

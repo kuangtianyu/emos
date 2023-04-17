@@ -2,6 +2,9 @@ package com.example.emos.api.db.pojo;
 
 import lombok.Data;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class TbMeetingRoom {
     private Integer id;

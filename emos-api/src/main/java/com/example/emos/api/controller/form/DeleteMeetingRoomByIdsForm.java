@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * @Author: kty
+ */
 @Schema(description = "删除会议室表单")
 @Data
 public class DeleteMeetingRoomByIdsForm {

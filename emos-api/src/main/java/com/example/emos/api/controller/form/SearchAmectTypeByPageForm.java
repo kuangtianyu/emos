@@ -8,9 +8,13 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询罚款类型分页记录表单")
 public class SearchAmectTypeByPageForm {
+
     @Pattern(regexp = "^[0-9a-zA-Z\\u4e00-\\u9fa5]{1,10}$", message = "type内容不正确")
     @Schema(description = "类型名称")
     private String type;

@@ -7,9 +7,13 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询会议信息表单")
 public class SearchMeetingInfoForm {
+
     @NotNull(message = "id不能为空")
     @Min(value = 1,message = "id不能小于1")
     @Schema(description = "会议ID")

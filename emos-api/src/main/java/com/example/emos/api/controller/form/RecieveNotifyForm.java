@@ -4,8 +4,12 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class RecieveNotifyForm {
+
     @NotBlank
     private String processId;
     @NotBlank

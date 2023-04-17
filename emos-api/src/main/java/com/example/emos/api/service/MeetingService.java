@@ -6,6 +6,9 @@ import com.example.emos.api.db.pojo.TbMeeting;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface MeetingService {
     public PageUtils searchOfflineMeetingByPage(HashMap param);
 

@@ -6,6 +6,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 
+/**
+ * @Author: kty
+ */
 @Schema(description = "更新部门表单")
 @Data
 public class UpdateDeptForm {

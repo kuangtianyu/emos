@@ -6,6 +6,9 @@ import com.example.emos.api.db.pojo.TbMeetingRoom;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface MeetingRoomService {
     public ArrayList<HashMap> searchAllMeetingRoom();
 

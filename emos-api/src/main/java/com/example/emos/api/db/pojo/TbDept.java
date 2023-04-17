@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * tb_dept
  *
- * @author
+ * @author kty
  */
 @Data
 public class TbDept implements Serializable {

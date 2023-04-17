@@ -37,6 +37,7 @@ import java.util.HashMap;
 @Tag(name = "AmectController", description = "罚款Web接口")
 @Slf4j
 public class AmectController {
+
     @Autowired
     private AmectService amectService;
 

@@ -8,6 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "更新罚款类型数据表单")
 public class UpdateAmectTypeByIdForm {

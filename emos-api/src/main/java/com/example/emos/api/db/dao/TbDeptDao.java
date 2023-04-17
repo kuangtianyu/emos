@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbDeptDao {
+
     public ArrayList<HashMap> searchAllDept();
 
     public HashMap searchById(int id);

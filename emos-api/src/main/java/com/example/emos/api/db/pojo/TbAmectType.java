@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class TbAmectType {
     private Integer id;

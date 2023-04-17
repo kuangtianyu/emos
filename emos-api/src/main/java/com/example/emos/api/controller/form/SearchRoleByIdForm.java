@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "根据ID查询角色表单")
 public class SearchRoleByIdForm {

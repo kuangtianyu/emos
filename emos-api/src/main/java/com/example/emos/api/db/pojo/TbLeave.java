@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class TbLeave {
     private Integer id;

@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * tb_meeting
  *
- * @author
+ * @author kty
  */
 @Data
 public class TbMeeting implements Serializable {

@@ -8,8 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbUserDao {
+
     public Set<String> searchUserPermissions(int userId);
 
     public Integer searchIdByOpenId(String openId);

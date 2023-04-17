@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 角色表
  *
  * @TableName tb_role
+ * @Author: kty
  */
 @Data
 public class TbRole implements Serializable {

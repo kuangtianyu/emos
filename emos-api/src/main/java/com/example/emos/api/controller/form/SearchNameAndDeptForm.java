@@ -6,9 +6,13 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询用户姓名和部门表单")
 public class SearchNameAndDeptForm {
+
     @NotNull(message = "id不能为空")
     @Min(value = 1, message = "id不能小于1")
     @Schema(description = "用户ID")

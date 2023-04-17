@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询某个会议室一周会议表单")
 public class SearchOfflineMeetingInWeekForm {

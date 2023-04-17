@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "会议签到表单")
 public class UpdateMeetingPresentForm {

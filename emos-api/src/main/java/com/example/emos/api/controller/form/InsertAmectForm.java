@@ -6,9 +6,13 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "添加罚款记录表单")
 public class InsertAmectForm {
+
     @NotEmpty(message = "userId不能为空")
     @Schema(description = "用户ID")
     private Integer[] userId;

@@ -18,8 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Component
 public class CosUtil {
+
     @Value("${tencent.cloud.appId}")
     private String appId;
 

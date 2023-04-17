@@ -16,6 +16,9 @@ import java.util.zip.Deflater;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * @Author: kty
+ */
 @Component
 public class TrtcUtil {
 

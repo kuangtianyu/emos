@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Schema(description = "修改密码表单")
 @Data
 public class UpdatePasswordForm {

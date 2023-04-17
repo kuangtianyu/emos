@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "添加会议表单")
 public class InsertMeetingForm {

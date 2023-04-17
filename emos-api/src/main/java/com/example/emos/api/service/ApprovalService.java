@@ -4,6 +4,9 @@ import com.example.emos.api.common.util.PageUtils;
 
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface ApprovalService {
 
     public PageUtils searchTaskByPage(HashMap param);

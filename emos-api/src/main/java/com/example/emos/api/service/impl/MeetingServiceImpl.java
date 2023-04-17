@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Service
 @Slf4j
 public class MeetingServiceImpl implements MeetingService {

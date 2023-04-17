@@ -7,9 +7,13 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "删除会议申请表单")
 public class DeleteMeetingApplicationForm {
+
     @NotNull(message = "id不能为空")
     @Min(value = 1)
     @Schema(description = "id")

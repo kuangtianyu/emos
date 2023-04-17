@@ -5,8 +5,12 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class SearchApprovalContentForm {
+
     @NotBlank(message = "instanceId不能为空")
     @Pattern(regexp = "^[0-9A-Za-z\\-]{36}$", message = "instanceId内容不正确")
     private String instanceId;

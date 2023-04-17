@@ -1,6 +1,10 @@
 package com.example.emos.api.oss;
 
+/**
+ * @Author: kty
+ */
 public enum TypeEnum {
+
     ARCHIVE("archive");
 
     private String key;

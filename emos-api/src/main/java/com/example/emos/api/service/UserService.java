@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * @Author: kty
+ */
 public interface UserService {
     public HashMap createQrCode();
 

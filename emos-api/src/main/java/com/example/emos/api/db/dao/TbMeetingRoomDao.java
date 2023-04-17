@@ -6,8 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbMeetingRoomDao {
+
     public ArrayList<HashMap> searchAllMeetingRoom();
 
     public HashMap searchById(int id);

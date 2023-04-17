@@ -14,6 +14,9 @@ import javax.websocket.server.ServerEndpoint;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @Author: kty
+ */
 @Slf4j
 @ServerEndpoint(value = "/socket")
 @Component

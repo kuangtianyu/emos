@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+/**
+ * @Author: kty
+ */
 @SpringBootApplication
 @ServletComponentScan
 @Slf4j

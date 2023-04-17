@@ -6,9 +6,13 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 @Schema(description = "查询Chart图表表单")
 public class SearchChartForm {
+
     @Min(value = 1, message = "deptId不能小于1")
     @Schema(description = "部门编号")
     private Integer deptId;
