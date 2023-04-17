@@ -11,6 +11,9 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @Author: kty
+ */
 public class MeetingRoomJob extends QuartzJobBean {
     @Resource
     private RedisTemplate redisTemplate;

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Date;
 
+/**
+ * @Author: kty
+ */
 @Component
 @Slf4j
 public class QuartzUtil {

@@ -5,6 +5,9 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class TbUser implements Serializable {
     /**

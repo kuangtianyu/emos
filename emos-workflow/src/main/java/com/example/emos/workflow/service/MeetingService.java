@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @Author: kty
+ */
 public interface MeetingService {
     HashMap searchMeetingByInstanceId(String instanceId);
 

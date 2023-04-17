@@ -2,6 +2,9 @@ package com.example.emos.workflow.bo;
 
 import lombok.Data;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class Approval {
     private String processId;

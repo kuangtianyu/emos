@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 @Component("notifyReimService")
 public class NotifyReimService implements JavaDelegate {
 

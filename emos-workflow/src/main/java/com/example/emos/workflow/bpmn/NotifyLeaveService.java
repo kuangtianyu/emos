@@ -6,13 +6,14 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
 import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.history.HistoricTaskInstanceQuery;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
 
+/**
+ * @Author: kty
+ */
 @Component
 public class NotifyLeaveService implements JavaDelegate {
     @Resource

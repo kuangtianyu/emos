@@ -3,6 +3,9 @@ package com.example.emos.workflow.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @Author: kty
+ */
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class EmosException extends RuntimeException {

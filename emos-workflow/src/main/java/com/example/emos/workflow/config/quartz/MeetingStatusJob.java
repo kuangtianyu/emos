@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @Author: kty
+ */
 @Slf4j
 @Component
 public class MeetingStatusJob extends QuartzJobBean {

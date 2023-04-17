@@ -7,6 +7,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @Author: kty
+ */
 @Data
 public class StartMeetingProcessForm {
     @NotBlank(message = "uuid不能为空")

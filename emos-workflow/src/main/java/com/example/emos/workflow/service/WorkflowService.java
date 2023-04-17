@@ -3,6 +3,9 @@ package com.example.emos.workflow.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @Author: kty
+ */
 public interface WorkflowService {
     String startMeetingProcess(HashMap param);
 

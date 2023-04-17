@@ -4,6 +4,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
 
+/**
+ * @Author: kty
+ */
 @Mapper
 public interface TbUserDao {
     ArrayList<String> searchEmailByIds(int[] ids);
