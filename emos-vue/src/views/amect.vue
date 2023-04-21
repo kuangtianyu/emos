@@ -149,14 +149,12 @@
 			layout="total, sizes, prev, pager, next, jumper"
 		></el-pagination>
 		<add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="loadDataList"></add-or-update>
-		<pay v-if="payVisible" ref="pay" @refreshDataList="loadDataList"></pay>
 	</div>
 </template>
 
 <script>
 import dayjs from 'dayjs';
 import AddOrUpdate from './amect-add-or-update.vue';
-import Pay from './amect-pay.vue';
 export default {
 	components: { AddOrUpdate, Pay },
 	data: function() {

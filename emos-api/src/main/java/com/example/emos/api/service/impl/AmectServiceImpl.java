@@ -126,37 +126,6 @@ public class AmectServiceImpl implements AmectService {
     }
 
     @Override
-    public void searchNativeAmectPayResult(HashMap param) {
-        HashMap map = amectDao.searchAmectByCondition(param);
-        if (MapUtil.isNotEmpty(map)) {
-            String uuid = MapUtil.getStr(map, "uuid");
-            param.clear();
-            param.put("appid", "nothing");
-            param.put("mch_id", "nothing");
-            param.put("out_trade_no", uuid);
-            param.put("nonce_str", "nothing");
-            try {
-                param.put("sign", "nothing");
-                Map<String, String> result = new HashMap<>();
-                String returnCode = result.get("return_code");
-                String resultCode = result.get("result_code");
-                if ("SUCCESS".equals(returnCode) && "SUCCESS".equals(resultCode)) {
-                    String tradeState = result.get("trade_state");
-                    if ("SUCCESS".equals(tradeState)) {
-                        amectDao.updateStatus(new HashMap() {{
-                            put("uuid", uuid);
-                            put("status", 2);
-                        }});
-                    }
-                }
-            } catch (Exception e) {
-                log.error("执行异常", e);
-                throw new EmosException("执行异常");
-            }
-        }
-    }
-
-    @Override
     public HashMap searchChart(HashMap param) {
         ArrayList<HashMap> chart_1 = amectDao.searchChart_1(param);
         ArrayList<HashMap> chart_2 = amectDao.searchChart_2(param);

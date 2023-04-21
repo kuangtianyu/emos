@@ -122,21 +122,6 @@ public class AmectController {
         String xml = temp.toString();
     }
 
-    @PostMapping("/searchNativeAmectPayResult")
-    @Operation(summary = "查询Native支付罚款订单的结果")
-    @SaCheckLogin
-    public R searchNativeAmectPayResult(@Valid @RequestBody SearchNativeAmectPayResultForm form) {
-        int userId = StpUtil.getLoginIdAsInt();
-        int amectId = form.getAmectId();
-        HashMap param = new HashMap() {{
-            put("amectId", amectId);
-            put("userId", userId);
-            put("status", 1);
-        }};
-        amectService.searchNativeAmectPayResult(param);
-        return R.ok();
-    }
-
     @PostMapping("/searchChart")
     @Operation(summary = "查询Chart图表")
     @SaCheckPermission(value = {"ROOT", "AMECT:SELECT"}, mode = SaMode.OR)
