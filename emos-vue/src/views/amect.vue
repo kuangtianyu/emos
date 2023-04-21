@@ -156,7 +156,7 @@
 import dayjs from 'dayjs';
 import AddOrUpdate from './amect-add-or-update.vue';
 export default {
-	components: { AddOrUpdate, Pay },
+	components: { AddOrUpdate},
 	data: function() {
 		return {
 			dataForm: {
