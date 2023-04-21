@@ -73,8 +73,8 @@
             style="width: 100%;"
             size="medium"
         >
-            <el-table-column type="selection" header-align="center" align="center" width="50" />
-            <el-table-column type="index" header-align="center" align="center" width="100" label="序号">
+            <el-table-column fixed="left" type="selection" header-align="center" align="center" width="50" />
+            <el-table-column fixed="left" type="index" header-align="center" align="center" width="100" label="序号">
                 <template #default="scope">
                     <span>{{ (pageIndex - 1) * pageSize + scope.$index + 1 }}</span>
                 </template>
@@ -101,7 +101,7 @@
             />
             <el-table-column prop="dept" header-align="center" align="center" min-width="120" label="部门" />
             <el-table-column prop="status" header-align="center" align="center" min-width="100" label="状态" />
-            <el-table-column header-align="center" align="center" width="150" label="操作">
+            <el-table-column fixed="right" header-align="center" align="center" width="150" label="操作">
                 <template #default="scope">
                     <el-button
                         type="text"

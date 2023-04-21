@@ -50,7 +50,7 @@
 			</el-table-column>
 			<el-table-column prop="num" header-align="center" align="center" min-width="100" label="人数" />
 			<el-table-column prop="status" header-align="center" align="center" min-width="100" label="状态" />
-			<el-table-column header-align="center" align="center" width="150" label="操作">
+			<el-table-column fixed="right" header-align="center" align="center" width="150" label="操作">
 				<template #default="scope">
 					<el-button
 						type="text"

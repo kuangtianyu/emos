@@ -45,8 +45,9 @@
                 header-align="center"
                 align="center"
                 width="50"
+                fixed="left"
             />
-            <el-table-column type="index" header-align="center" align="center" width="100" label="序号">
+            <el-table-column fixed="left" type="index" header-align="center" align="center" width="100" label="序号">
                 <template #default="scope">
                     <span>{{ (pageIndex - 1) * pageSize + scope.$index + 1 }}</span>
                 </template>
@@ -68,7 +69,7 @@
                     <span>{{ scope.row.systemic ? '是' : '否' }}</span>
                 </template>
             </el-table-column>
-            <el-table-column header-align="center" align="center" width="150" label="操作">
+            <el-table-column fixed="left" header-align="center" align="center" width="150" label="操作">
                 <template #default="scope">
                     <el-button
                         type="text"

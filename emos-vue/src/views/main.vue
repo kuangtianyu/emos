@@ -40,7 +40,7 @@
                     </el-menu-item>
                 </el-menu>
             </div>
-            <update-password v-if="updatePassowrdVisible" ref="updatePassowrd"></update-password>
+            <update-password v-if="updatePassowrdVisible" ref="updatePassword"></update-password>
         </nav>
         <aside class="site-sidebar site-sidebar--dark">
             <div class="site-sidebar__inner">
