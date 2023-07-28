@@ -103,11 +103,6 @@
 					<span>{{ scope.row.amount }}元</span>
 				</template>
 			</el-table-column>
-			<el-table-column header-align="center" align="center" label="借款金额" min-width="120">
-				<template #default="scope">
-					<span>{{ scope.row.anleihen }}元</span>
-				</template>
-			</el-table-column>
 			<el-table-column header-align="center" align="center" label="实际报销" min-width="120">
 				<template #default="scope">
 					<span>{{ scope.row.balance }}元</span>
@@ -117,7 +112,13 @@
 			<el-table-column prop="createTime" header-align="center" align="center" label="申请日期" width="150" />
 			<el-table-column header-align="center" align="center" min-width="150" label="操作">
 				<template #default="scope">
-					<el-button type="text" size="medium" @click="pdfHandle(scope.row.id)">报销单</el-button>
+					<el-button type="text"
+							   size="medium"
+							   v-if="scope.row.status == '已通过'"
+							   @click="pdfHandle(scope.row.id)"
+					>
+						报销单
+					</el-button>
 					<el-button
 						type="text"
 						size="medium"
